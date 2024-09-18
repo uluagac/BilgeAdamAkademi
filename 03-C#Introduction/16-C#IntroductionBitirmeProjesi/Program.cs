@@ -1,10 +1,10 @@
-﻿namespace _16_C_IntroductionBitirmeProjesi
+﻿using System.Diagnostics;
+
+namespace _16_C_IntroductionBitirmeProjesi
 {
     internal class Program
     {
-        static double stepLength = GetStepLength();
-        static double stepPerMinute = GetStepPerMinute();
-        static int runningTime = GetRunningTime();
+        static double stepLength;
         static void Main(string[] args)
         {
             #region Ödev & Açıklama
@@ -23,177 +23,117 @@
              * Koşuyu aynı hızda koşmam mümkün olmayacağından koşunun belli bölümlerinde dakikada kaç adım attığımı girebileceğim bir farklı tasarım yapabilir misiniz?
             */
             #endregion
-            Start();
+            while (true)
+            {
+                Start();
+            }
         }
-        /// <summary>
-        /// Programı başlatmak için kullanılır.
-        /// </summary>
+        // Başlangıç Metodu
         static void Start()
         {
+            // Hesaplama işlemi ilk kez yapılmıyorsa işlem "Yeniden Hesapla" olarak değişir ve adım boyu sıfırlama seçeneği eklenir.
+            string processName = "Hesapla";
+            string? secondProcess = null;
+            if (stepLength > 0)
+            { 
+                processName = "Yeniden Hesapla";
+                secondProcess = "2 - Adım Boyunu Sıfırla\n";
+            }
+
+            // Program başlangıc ekranı.
             Console.Title = "Günlük Koşu Mesafesi Ölçer";
             Console.BackgroundColor = ConsoleColor.Green;
             Console.ForegroundColor = ConsoleColor.Black;
             Console.WriteLine(new string('*', 10) + " Günlük Koşu Mesafesi Ölçer " + new string('*', 10));
             Console.ResetColor();
-            Console.Write("1 - Hesapla\t0 - Çıkış:\t");
+            Console.WriteLine($"1 - {processName}\t{secondProcess}0 - Çıkış\t");
             string start = Console.ReadLine().Trim();
             switch (start)
             {
                 case "1":
                     // Hesaplama İşlemleri
-                    CalculateDistance(stepLength, stepPerMinute, runningTime);
-                    Start();
+                    GetStepLength();
+                    break;
+                case "2":
+                    if (stepLength > 0)
+                        stepLength = 0;
+                    else
+                    {
+                        ShowChoiceError();
+                    }
                     break;
                 case "0":
                     // Çıkış
+                    Console.BackgroundColor = ConsoleColor.Red;
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine("\nProgramdan çıkılıyor...");
+                    Console.ResetColor();
                     break;
                 default:
                     // İşlem Seçim Hatası
-                    Console.BackgroundColor = ConsoleColor.White;
-                    Console.ForegroundColor = ConsoleColor.Black;
-                    Console.WriteLine("Hatalı bir işlem seçildi! Lütfen yapmak istediğiniz işlemin kodunu seçin.");
-                    Console.ResetColor();
-                    Start();
+                    ShowChoiceError();
                     break;
             }
         }
 
+        // Hata Mesajları
         /// <summary>
-        /// Konsolda giriş hatası uyarısı vermek için kullanılır.
+        /// Konsolda, menüde seçilen işlemin hatalı olması durumundaki hata mesajını gösterir.
+        /// </summary>
+        static void ShowChoiceError()
+        {
+            Console.Clear();
+            Console.BackgroundColor = ConsoleColor.Yellow;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine("Hatalı bir işlem seçildi! Lütfen yapmak istediğiniz işlemin kodunu seçin.");
+            Console.ResetColor();
+            Start();
+        }
+        /// <summary>
+        /// Konsolda, değerlerin rakam ile girilmemesi durumundaki hata mesajını gösterir.
         /// </summary>
         static void ShowDigitError()
         {
-            Console.BackgroundColor = ConsoleColor.White;
+            Console.BackgroundColor = ConsoleColor.Yellow;
             Console.ForegroundColor = ConsoleColor.Black;
             Console.WriteLine("Bir hata oldu! Lütfen değeri rakamlarla giriniz.\n");
             Console.ResetColor();
         }
-
         /// <summary>
-        /// Konsolda sıfır hatası uyarısı vermek için kullanılır.
+        /// Konsolda, girilen değerin "sıfır" olması durumundaki hata mesajını gösterir.
         /// </summary>
         static void ShowZeroError()
         {
-            Console.BackgroundColor = ConsoleColor.White;
+            Console.BackgroundColor = ConsoleColor.Yellow;
             Console.ForegroundColor = ConsoleColor.Black;
             Console.WriteLine("Bir hata oldu! Girilen değer sıfır veya sıfırdan küçük olamaz.\n");
             Console.ResetColor();
         }
 
+        // Değerlerin Alınması
         /// <summary>
-        /// Kullanıcıdan adım mesafesini santimetre olarak almak için kullanılır. Rakam ile giriş, sıfır ve sıfırdan küçük sayı kontrolü yapılır.
+        /// Kullanıcıdan adım boyu almak için kullanılır. Rakam girişi kontrolü, sıfır ve sıfırdan küçük sayı girişi kontrolü yapılır; hatalı girişlerde uygun hata mesajını gösterir. Alınan değeri konsolda yazdırır.
         /// </summary>
-        /// <returns>Adım mesafesi.</returns>
-        static double GetStepLength()
+        static void GetStepLength()
         {
-            Console.Write("Lütfen bir adımınızın santimetre cinsinden mesafesi girin: ");
-            if (double.TryParse(Console.ReadLine(), out double stepLength))
+            Console.Write("Lütfen santimetre cinsinden adım boyunuzu girin: ");
+            if (double.TryParse(Console.ReadLine(), out stepLength))
             {
                 if (stepLength > 0)
                 {
-                    Console.WriteLine($"Bir adımınızın mesafesi kaydedildi... {stepLength}");
-                    return stepLength;
+                    Console.WriteLine($"Adım boyunuz kaydedildi... {stepLength}cm");
                 }
                 else
                 {
                     ShowZeroError();
-                    return GetStepLength();
+                    GetStepLength();
                 }
             }
             else
             {
                 ShowDigitError();
-                return GetStepLength();
+                GetStepLength();
             }
-        }
-
-        /// <summary>
-        /// Kullanıcıdan dakikada kaç adım attığı bilgisini almak için kullanılır. Rakam ile giriş, sıfır ve sıfırdan küçük sayı kontrolü yapılır.
-        /// </summary>
-        /// <returns>Dakika başı adım.</returns>
-        static double GetStepPerMinute()
-        {
-            Console.Write("Lütfen dakikada atılan adım sayısını girin: ");
-            if (double.TryParse(Console.ReadLine(), out double stepPerMinute))
-            {
-                if (stepPerMinute > 0)
-                {
-                    Console.WriteLine($"Bir dakikada atılan adım kaydedildi... {stepPerMinute}");
-                    return stepPerMinute;
-                }
-                else
-                {
-                    ShowZeroError();
-                    return GetStepPerMinute();
-                }
-            }
-            else
-            {
-                ShowDigitError();
-                return GetStepPerMinute();
-            }
-        }
-
-        /// <summary>
-        /// Kullanıcıdan ilk önce koşu saatini sonra koşu dakikasını alarak toplam dakikayı hesaplamak için kullanılır. Rakam ile giriş ve sıfır veya sıfırdan küçük sayı kontrolü yapılır.
-        /// </summary>
-        /// <returns>Toplam koşu dakikası</returns>
-        static int GetRunningTime()
-        {
-            Console.Write("Lütfen koşu saatinizi girin: ");
-            if (int.TryParse(Console.ReadLine(), out int runningTimeHours))
-            {
-                if (runningTimeHours >= 0)
-                {
-                    Console.WriteLine($"Koşu saatiniz kaydedildi... {runningTimeHours}");
-                    runningTime += runningTimeHours * 60;
-                    Console.Write("Lütfen koşu dakikanızı girin: ");
-                    if (int.TryParse(Console.ReadLine(), out int runningTimeMinutes))
-                    {
-                        if (runningTimeMinutes > 0)
-                        {
-                            Console.WriteLine($"Koşu dakikanız kaydedildi... {runningTimeMinutes}");
-                            return runningTime += runningTimeMinutes;
-                        }
-                        else
-                        {
-                            ShowZeroError();
-                            return GetRunningTime();
-                        }
-                    }
-                    else
-                    {
-                        ShowDigitError();
-                        return GetRunningTime();
-                    }
-                }
-                else
-                {
-                    Console.BackgroundColor = ConsoleColor.White;
-                    Console.ForegroundColor = ConsoleColor.Black;
-                    Console.WriteLine("Bir hata oldu! Girilen değer sıfırdan küçük olamaz.\n");
-                    Console.ResetColor();
-                    return GetRunningTime();
-                }
-            }
-            else
-            {
-                ShowDigitError();
-                return GetRunningTime();
-            }
-        }
-
-        /// <summary>
-        /// Toplam katedilen mesafeyi hesaplamak için kullanılır ve sonuç konsola yazdırılır.
-        /// </summary>
-        /// <param name="_stepLength">Adım boyu</param>
-        /// <param name="_stepPerMinute">Dakika başı adım sayısı</param>
-        /// <param name="_runningTime">Toplam koşu süresi</param>
-        static void CalculateDistance(double stepLength, double stepPerMinute, int runningTime)
-        {
-            Console.WriteLine("Günlük koşu süreniz hesaplanıyor...");
-            double distanceResult = stepLength * stepPerMinute * runningTime;
-            Console.WriteLine($"Günlük koşu mesafeniz: {distanceResult / 100} metredir.");
         }
     }
 }
