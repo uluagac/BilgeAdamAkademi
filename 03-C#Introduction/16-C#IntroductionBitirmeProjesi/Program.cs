@@ -5,6 +5,9 @@ namespace _16_C_IntroductionBitirmeProjesi
     internal class Program
     {
         static double stepLength;
+        static List<double> stepPerMinute = new List<double>();
+        static List<int> runningTime = new List<int>();
+        static List<int> avgRunningDistance = new List<int>();
         static void Main(string[] args)
         {
             #region Ödev & Açıklama
@@ -52,11 +55,12 @@ namespace _16_C_IntroductionBitirmeProjesi
             {
                 case "1":
                     // Hesaplama İşlemleri
-                    GetStepLength();
+                    CalculateRunningTime();
                     break;
                 case "2":
-                    if (stepLength > 0)
+                    if (stepLength > 0) { 
                         stepLength = 0;
+                    }
                     else
                     {
                         ShowChoiceError();
@@ -112,7 +116,7 @@ namespace _16_C_IntroductionBitirmeProjesi
 
         // Değerlerin Alınması
         /// <summary>
-        /// Kullanıcıdan adım boyu almak için kullanılır. Rakam girişi kontrolü, sıfır ve sıfırdan küçük sayı girişi kontrolü yapılır; hatalı girişlerde uygun hata mesajını gösterir. Alınan değeri konsolda yazdırır.
+        /// Kullanıcıdan adım boyu almak için kullanılır. Rakam girişi, sıfır ve sıfırdan küçük sayı girişi kontrolü yapılır; hatalı girişlerde uygun hata mesajını gösterir. Alınan değeri konsolda yazdırır ve değişkene atar.
         /// </summary>
         static void GetStepLength()
         {
@@ -133,6 +137,91 @@ namespace _16_C_IntroductionBitirmeProjesi
             {
                 ShowDigitError();
                 GetStepLength();
+            }
+        }
+        /// <summary>
+        /// Kullanıcıdan dakika başına kaç adım attığını almak için kullanılır. Rakam girişi, sıfır ve sıfırdan küçük sayı girişi kontrolü yapılır; hatalı girişlerde uygun hata mesajını gösterir. Alınan değeri konsola yazdırır ve list öğesine kaydeder.
+        /// </summary>
+        static void GetStepPerMinute()
+        {
+            Console.WriteLine("Lütfen dakikada kaç adım attığınızı girin: ");
+            if (double.TryParse(Console.ReadLine(), out double _stepPerMinute))
+            {
+                if (_stepPerMinute > 0)
+                {
+                    stepPerMinute.Add(_stepPerMinute);
+                    Console.WriteLine($"Dakika başına atılan adımız kaydedildi... {_stepPerMinute}");
+                }
+                else
+                {
+                    ShowZeroError();
+                    GetStepPerMinute();
+                }
+            }
+            else
+            {
+                ShowDigitError();
+                GetStepPerMinute();
+            }
+        }
+        /// <summary>
+        /// Kullanıcının koşu süresini önce saat sonra dakika olarak almak ve toplam süresini dakika olarak hesaplamak için kullanılır. Rakam girişi, sıfır veya sıfırdan küçük girişi kontrolü yapılır; hatalı girişlerde uygun hata mesajını gösterir. Alınan değeri konsola yazdırır ve list öğesine kaydeder.
+        /// </summary>
+        static void GetRunningTime()
+        {
+            Console.WriteLine("Lütfen koşu sürenizin saatini girin: ");
+            if (int.TryParse(Console.ReadLine(), out int _runningTimeHours))
+            {
+                if (_runningTimeHours >= 0)
+                {
+                    Console.WriteLine("Lütfen koşu sürenizin dakikasını girin: ");
+                    if (int.TryParse(Console.ReadLine(), out int _runningTimeMinutes))
+                    {
+                        if (_runningTimeMinutes > 0)
+                        {
+                            int _runningTime = (_runningTimeHours * 60) + _runningTimeMinutes;
+                            runningTime.Add(_runningTime);
+                            Console.WriteLine($"Koşu süreniz kaydedildi... {_runningTime} dakika");
+                        }
+                    }
+                    else
+                    {
+                        ShowDigitError();
+                        GetRunningTime();
+                    }
+                }
+                else
+                {
+                    Console.BackgroundColor = ConsoleColor.Yellow;
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.WriteLine("Bir hata oldu! Girilen değer sıfırdan küçük olamaz.\n");
+                    Console.ResetColor();
+                }
+            }
+            else
+            {
+                ShowDigitError();
+                GetRunningTime();
+            }
+        }
+
+        // Hesaplama
+        static void CalculateRunningTime()
+        {
+            do
+            {
+                if (stepLength <= 0)
+                    GetStepLength();
+                GetStepPerMinute();
+                GetRunningTime();
+                Console.WriteLine("Yeni bir koşu periyodu eklemek istiyor musunuz? 1 - Evet | 2 - Hayır");
+            } while (Console.ReadLine() == "1" ? true : false);
+            if (stepPerMinute.Count == runningTime.Count)
+            {
+                for (int i = 0; i < stepPerMinute.Count; i++)
+                {
+                    Console.WriteLine($"Adım boyu: {stepLength}\t| Dakika başı adım: {stepPerMinute[i]}\t| Koşu süresi: {runningTime[i]}");
+                }
             }
         }
     }
