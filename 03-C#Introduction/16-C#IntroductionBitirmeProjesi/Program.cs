@@ -10,7 +10,7 @@ namespace _16_C_IntroductionBitirmeProjesi
         static List<double> avgRunningDistance = new List<double>();
         static void Main(string[] args)
         {
-            #region Ödev & Açıklama
+            #region Ödev & Açıklaması
             // Boost Proje: Günlük Koşu Mesafesi Ölçer
             /*
              * Yeni akıllı saatler olmadan günlük koşu mesafemizi ölçebilir miyiz? Sizden günlük koşu mesafemizi ölçen bir yazılım yapmanızı istiyorum. Yapacağınız yazılıma; sizin adım boyunuzu, bir dakikada kaç adım attığınızı ve toplam koşu sürenizi belirtiğinizde size metre cinsinden toplam koşu mesafenizi söyleyecek.
@@ -26,6 +26,18 @@ namespace _16_C_IntroductionBitirmeProjesi
              * Koşuyu aynı hızda koşmam mümkün olmayacağından koşunun belli bölümlerinde dakikada kaç adım attığımı girebileceğim bir farklı tasarım yapabilir misiniz?
             */
             #endregion
+            #region Program Açıklaması
+            /* 
+             * Program Start() metodu ile başlar.
+             * Kullanıcıdan adım boyunu, dakikada kaç adım attığını, koşu süresinin saatini ve koşu süresinin dakikasını alır.
+             * Eğer kullanıcı yeni bir periyod eklemek isterse "0" hariç herhangi bir tuşa basar ve dakikada kaç adım attığı, koşu süresinin saati ve koşu süresinin dakikası alınır.
+             * Kullanıcı döngüden çıkmak için "0" bastığı zaman List elemanları ile hesaplama yapılır ve ortalama alınarak kaydedilir.
+             * Program yeniden başlatılır ve ortalama koşu mesafeleri en üste yazdırılır.
+             * Kullanıcı artık "Adım Boyu Sıfırla" ve "Geçmişi Temizle" seçeneklerine de sahip olur.
+             * Eğer adım boyunu sıfırlamazsa adım boyu bilgisi alınmadan tekrar diğer bilgiler alınarak hesaplama yapılabilir.
+             * Adım boyu sıfırlama seçeneği farklı kişilerin koşu mesafelerini de hesaplamak için eklenmiştir.
+            */
+            #endregion
             Start();
         }
         // Başlangıç Metodu
@@ -37,14 +49,12 @@ namespace _16_C_IntroductionBitirmeProjesi
             // Geçmişi silmek için fonksiyon
             void ClearHistory()
             {
-                stepPerMinute.Clear();
-                runningTime.Clear();
                 avgRunningDistance.Clear();
                 Console.Clear();
                 Start();
             }
 
-            // Hesaplama işlemi ilk kez yapılmıyorsa işlem "Yeniden Hesapla" olarak değişir ve adım boyu sıfırlama seçeneği eklenir.
+            // Hesaplama işlemi adım boyu bilgisi olmadan yapılıyorsa "Hesapla", eğer daha önce adım boyu bilgisi girildiyse "Yeniden Hesapla" olarak değişir.
             string processName = "Hesapla";
             string StepLengthProcess = null;
             string clearHistoryProcess = null;
@@ -61,8 +71,9 @@ namespace _16_C_IntroductionBitirmeProjesi
                     clearHistoryProcess = "3 - Geçmişi Temizle\t";
                 else
                     clearHistoryProcess = "2 - Geçmişi Temizle\t";
-                Console.Clear();
-                Console.WriteLine("Önceki koşu mesafeleriniz: ");
+                Console.BackgroundColor = ConsoleColor.Blue;
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("Önceki koşu mesafeleriniz:");
                 for (int i = 0; i < avgRunningDistance.Count; i++)
                 {
                     Console.Write($"{i + 1} - {avgRunningDistance[i]} metre\t");
@@ -71,6 +82,7 @@ namespace _16_C_IntroductionBitirmeProjesi
                         Console.WriteLine();
                     }
                 }
+                Console.ResetColor();
             }
 
             // Program başlangıc ekranı.
@@ -109,10 +121,18 @@ namespace _16_C_IntroductionBitirmeProjesi
                     }
                 case "3":
                     // Geçmişi temizleme işmeleri
-                    if (avgRunningDistance.Count > 0)
+                    if (stepLength > 0)
                     {
-                        ClearHistory();
-                        break;
+                        if (avgRunningDistance.Count > 0)
+                        {
+                            ClearHistory();
+                            break;
+                        }
+                        else
+                        {
+                            ShowChoiceError();
+                            break;
+                        }
                     }
                     else
                     {
@@ -304,7 +324,7 @@ namespace _16_C_IntroductionBitirmeProjesi
 
         // Hesaplama
         /// <summary>
-        /// Kullanıcıdan değer alan metotları çalıştırır ve kullanıcı çıkana kadar döngüye sokar, daha sonra toplam koşu mesafesini hesaplar ve atama yapar. İşlemler bittikten sonra tekrar başlangıç metodunu çalıştırır.
+        /// Kullanıcıdan değer alan metotları çalıştırır ve kullanıcı çıkana kadar döngüye sokar, daha sonra toplam koşu mesafesini hesaplar ve atama yapar. İşlemler bittikten sonra tekrar başlangıç metodunu çalıştırır ve son hesaplamanını periyotlarını ekranın en üstüne yazdırır.
         /// </summary>
         static void CalculateRunningTime()
         {
@@ -326,13 +346,23 @@ namespace _16_C_IntroductionBitirmeProjesi
                 {
                     runningDistance += stepLength * stepPerMinute[i] * runningTime[i];
                 }
+                // Ekrana yazdırma
                 avgRunningDistance.Add(Math.Round(runningDistance / 100, 3)); // Koşu mesafesi ondalıklı olarak (3 hane) metre cinsinden kaydedilir.
-                Console.WriteLine($"Ortalama koşu mesafeniz {avgRunningDistance[avgRunningDistance.Count - 1]} metredir.");
+                Console.Clear();
+                Console.BackgroundColor = ConsoleColor.DarkBlue;
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("Son koşunuzun detayları:");
+                Console.WriteLine($"Adım boyunuz: {stepLength}cm");
+                for (int i = 0; i < stepPerMinute.Count;i++) // Koşu periyotlarında koşulan mesafe ekrana yazılır.
+                {
+                    Console.WriteLine($"Koşu periyodu {i + 1} | Dakika başı adım: {stepPerMinute[i]}, Koşu süresi: {runningTime[i]} dakika, Koşulan mesafe: {(stepLength * stepPerMinute[i] * runningTime[i]) / 100}m");
+                }
+                Console.ResetColor();
                 stepPerMinute.Clear();
                 runningTime.Clear();
                 Start();
-            }
-            else // stepPerMinute ve runnigTime eleman sayılar eşit değilse çalışacak, girişi engellenmiştir.
+                }
+            else // stepPerMinute ve runnigTime eleman sayılar eşit değilse çalışacak. Bütün geçmişi temizler. Girişi engellendi(???).
             {
                 Console.BackgroundColor = ConsoleColor.Red;
                 Console.ForegroundColor = ConsoleColor.White;
