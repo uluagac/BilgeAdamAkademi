@@ -97,7 +97,7 @@ namespace _16_C_IntroductionBitirmeProjesi
             {
                 case "1":
                     // Hesaplama İşlemleri
-                    CalculateRunningTime();
+                    CalculateRunningDistance();
                     break;
                 case "2":
                     // Adım sıfırlama işlemleri
@@ -326,7 +326,7 @@ namespace _16_C_IntroductionBitirmeProjesi
         /// <summary>
         /// Kullanıcıdan değer alan metotları çalıştırır ve kullanıcı çıkana kadar döngüye sokar, daha sonra toplam koşu mesafesini hesaplar ve atama yapar. İşlemler bittikten sonra tekrar başlangıç metodunu çalıştırır ve son hesaplamanını periyotlarını ekranın en üstüne yazdırır.
         /// </summary>
-        static void CalculateRunningTime()
+        static void CalculateRunningDistance()
         {
             // Eğer yoksa adım boyu ve dakika başı adım ile koşu süresi alma döngüsü.
             do
