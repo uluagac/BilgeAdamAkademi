@@ -21,25 +21,27 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "07-BasitMenüSistemi", "02-
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "08-1'den100'eKadarSayılar", "02-DecisionStructures&Loops\08-1'den100'eKadarSayılar\08-1'den100'eKadarSayılar.csproj", "{D9C0932D-72FB-40C4-9A2F-283161200A94}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01-DeğişkenlerOperatörlerTipDönüşümleri", "01-VariablesOperatorsTypeConversions\01-DeğişkenlerOperatörlerTipDönüşümleri\01-DeğişkenlerOperatörlerTipDönüşümleri.csproj", "{E91469E8-91EC-4EF4-9526-F8983CA27095}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01-DeğişkenlerOperatörlerTipDönüşümleri", "01-VariablesOperatorsTypeConversions\01-DeğişkenlerOperatörlerTipDönüşümleri\01-DeğişkenlerOperatörlerTipDönüşümleri.csproj", "{E91469E8-91EC-4EF4-9526-F8983CA27095}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "09-FaktöriyelHesaplama", "02-DecisionStructures&Loops\09-FaktöriyelHesaplama\09-FaktöriyelHesaplama.csproj", "{4C14EFE2-C5B7-4246-B8BD-5E43F477E5C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "09-FaktöriyelHesaplama", "02-DecisionStructures&Loops\09-FaktöriyelHesaplama\09-FaktöriyelHesaplama.csproj", "{4C14EFE2-C5B7-4246-B8BD-5E43F477E5C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "10-PozitifNegatifSıfırDurumu", "02-DecisionStructures&Loops\10-PozitifNegatifSıfırDurumu\10-PozitifNegatifSıfırDurumu.csproj", "{691D78EB-4732-47D2-A4A7-E2A142D047CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "10-PozitifNegatifSıfırDurumu", "02-DecisionStructures&Loops\10-PozitifNegatifSıfırDurumu\10-PozitifNegatifSıfırDurumu.csproj", "{691D78EB-4732-47D2-A4A7-E2A142D047CB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "11-TamBölenleriBulma", "02-DecisionStructures&Loops\11-TamBölenleriBulma\11-TamBölenleriBulma.csproj", "{EF64889F-5E2F-481D-80D2-A80658BC8CEE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "11-TamBölenleriBulma", "02-DecisionStructures&Loops\11-TamBölenleriBulma\11-TamBölenleriBulma.csproj", "{EF64889F-5E2F-481D-80D2-A80658BC8CEE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "12-BasitŞifreDoğrulama", "02-DecisionStructures&Loops\12-BasitŞifreDoğrulama\12-BasitŞifreDoğrulama.csproj", "{964DA3AA-5066-45B7-A073-A450CF42F4F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "12-BasitŞifreDoğrulama", "02-DecisionStructures&Loops\12-BasitŞifreDoğrulama\12-BasitŞifreDoğrulama.csproj", "{964DA3AA-5066-45B7-A073-A450CF42F4F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "13-BüyükKüçükSayıyıBulma", "02-DecisionStructures&Loops\13-BüyükKüçükSayıyıBulma\13-BüyükKüçükSayıyıBulma.csproj", "{3217081D-9206-461F-8101-5172FA0C40EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "13-BüyükKüçükSayıyıBulma", "02-DecisionStructures&Loops\13-BüyükKüçükSayıyıBulma\13-BüyükKüçükSayıyıBulma.csproj", "{3217081D-9206-461F-8101-5172FA0C40EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "14-AsalSayıKontrolü", "02-DecisionStructures&Loops\14-AsalSayıKontrolü\14-AsalSayıKontrolü.csproj", "{6CC23BA6-3045-4F01-802D-8D001B38EBA1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "14-AsalSayıKontrolü", "02-DecisionStructures&Loops\14-AsalSayıKontrolü\14-AsalSayıKontrolü.csproj", "{6CC23BA6-3045-4F01-802D-8D001B38EBA1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "15-BasitATMSimülasyonu", "02-DecisionStructures&Loops\15-BasitATMSimülasyonu\15-BasitATMSimülasyonu.csproj", "{3EFDC0CF-C13D-450C-9642-2EEB5075B001}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "15-BasitATMSimülasyonu", "02-DecisionStructures&Loops\15-BasitATMSimülasyonu\15-BasitATMSimülasyonu.csproj", "{3EFDC0CF-C13D-450C-9642-2EEB5075B001}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03-C#Introduction", "03-C#Introduction", "{46AC46FD-41E8-40B2-B886-C06DCCD31485}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "16-C#IntroductionBitirmeProjesi", "03-C#Introduction\16-C#IntroductionBitirmeProjesi\16-C#IntroductionBitirmeProjesi.csproj", "{A6EAF939-FE16-4E63-AA77-183D8BF18F58}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "16-C#IntroductionBitirmeProjesi", "03-C#Introduction\16-C#IntroductionBitirmeProjesi\16-C#IntroductionBitirmeProjesi.csproj", "{A6EAF939-FE16-4E63-AA77-183D8BF18F58}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "17-C# StudyCaseStudentManagementSystem", "03-C#Introduction\17-C# StudyCaseStudentManagementSystem\17-C# StudyCaseStudentManagementSystem.csproj", "{D2A9BD77-9C2E-4F1C-A3E6-29D7CCB98F8A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -111,6 +113,10 @@ Global
 		{A6EAF939-FE16-4E63-AA77-183D8BF18F58}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6EAF939-FE16-4E63-AA77-183D8BF18F58}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6EAF939-FE16-4E63-AA77-183D8BF18F58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2A9BD77-9C2E-4F1C-A3E6-29D7CCB98F8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2A9BD77-9C2E-4F1C-A3E6-29D7CCB98F8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2A9BD77-9C2E-4F1C-A3E6-29D7CCB98F8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2A9BD77-9C2E-4F1C-A3E6-29D7CCB98F8A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -132,6 +138,7 @@ Global
 		{6CC23BA6-3045-4F01-802D-8D001B38EBA1} = {6C77FCD4-DBE3-406C-BB7B-437B1D4E6D06}
 		{3EFDC0CF-C13D-450C-9642-2EEB5075B001} = {6C77FCD4-DBE3-406C-BB7B-437B1D4E6D06}
 		{A6EAF939-FE16-4E63-AA77-183D8BF18F58} = {46AC46FD-41E8-40B2-B886-C06DCCD31485}
+		{D2A9BD77-9C2E-4F1C-A3E6-29D7CCB98F8A} = {46AC46FD-41E8-40B2-B886-C06DCCD31485}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {122CD4B8-A771-4F02-B468-701C37C8C059}
