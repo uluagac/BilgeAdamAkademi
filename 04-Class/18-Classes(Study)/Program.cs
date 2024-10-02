@@ -11,7 +11,7 @@
             students.Add(student);
             foreach (Student st in students)
             {
-                Console.WriteLine($"ID: {st.Id} | Ad: {st.FullName} | Yaş: {st.BirthDate} | Burs: {st.Scholarship}");
+                Console.WriteLine($"ID: {st.Id} | Ad: {st.FullName} | Yaş: {st.BirthDate} | Burs: {(st.Scholarship ? "Burslu" : "Burssuz")}");
             }
 
             List<Teacher> teachers = new List<Teacher>();
