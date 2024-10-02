@@ -1,10 +1,87 @@
-﻿namespace _18_GameTry_Study_
+﻿using System.Reflection.PortableExecutable;
+
+namespace _18_GameTry_Study_
 {
     internal class Program
     {
+        static Character character = new Character(GetCharacterName(), GetCharacterType());
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            Start();
+        }
+        /// <summary>
+        /// Oyunun başlangıç menüsüdür. 2 saniyelik bir bildirim gösterir ve menüyü açar.
+        /// </summary>
+        static void Start()
+        {
+            // Console Design
+            Console.Title = "Dungeon Master";
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Oyuna hoş geldiniz. Bu oyun metin tabanlı bir FRP'dir. Deneme amacıyla yapılmıştır.");
+            Thread.Sleep(2000);
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("Ne yapmak istiyorsunuz?");
+            Console.WriteLine("1 - Başla\t 2 - Çık");
+            Console.ResetColor();
+
+            string choice = Console.ReadLine();
+            switch (choice)
+            {
+                case "1":
+                    // Oyun Başlatılır
+                    Character character = new Character(GetCharacterName(), GetCharacterType());
+                    break;
+                case "2":
+                    // Konsol Kapatılır
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Karakter adını almak için metot.
+        /// </summary>
+        /// <returns>string bir değer döner, boş dönemez.</returns>
+        static string GetCharacterName()
+        {
+            Console.Write("Lütfen kullanıcı adı girin: ");
+            string name = Console.ReadLine().Trim();
+            if (!string.IsNullOrEmpty(name))
+            {
+                return name;
+            }
+            else
+            {
+                return GetCharacterName();
+            }
+        }
+        /// <summary>
+        /// Karakter tipini almak için metot.
+        /// </summary>
+        /// <returns>int bir değer döner.</returns>
+        static int GetCharacterType()
+        {
+            Console.Write("Lütfen karakter seçin: 1 - Savaşçı\t2 - Büyücü\t");
+            if (int.TryParse(Console.ReadLine(), out int characterType))
+            {
+                switch (characterType)
+                {
+                    case 1:
+                        Console.WriteLine("Savaşçı karakteriniz yaratıldı.");
+                        return characterType;
+                        break;
+                    case 2:
+                        Console.WriteLine("Büyücü karakteriniz yaratıldı.");
+                        return characterType;
+                        break;
+                    default:
+                        return GetCharacterType();
+                }
+            }
+            else
+            {
+                return GetCharacterType();
+            }
         }
     }
 }
