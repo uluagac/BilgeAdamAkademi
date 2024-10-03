@@ -5,6 +5,7 @@ namespace _18_GameTry_Study_
     internal class Program
     {
         static Character character = new Character(GetCharacterName(), GetCharacterType());
+        static Monster monster = new Monster(GetMonsterDifficulty());
         static void Main(string[] args)
         {
             Start();
@@ -31,6 +32,10 @@ namespace _18_GameTry_Study_
                 case "1":
                     // Oyun Başlatılır
                     Character character = new Character(GetCharacterName(), GetCharacterType());
+                    Monster monster = new Monster(GetMonsterDifficulty());
+                    Console.WriteLine(character.HealthPoint);
+                    Console.WriteLine(monster.HealthPoint);
+
                     break;
                 case "2":
                     // Konsol Kapatılır
@@ -61,7 +66,7 @@ namespace _18_GameTry_Study_
         /// <returns>int bir değer döner.</returns>
         static int GetCharacterType()
         {
-            Console.Write("Lütfen karakter seçin: 1 - Savaşçı\t2 - Büyücü\t");
+            Console.Write("Lütfen karakter seçin: 1 - Savaşçı\t2 - Büyücü:\t");
             if (int.TryParse(Console.ReadLine(), out int characterType))
             {
                 switch (characterType)
@@ -81,6 +86,23 @@ namespace _18_GameTry_Study_
             else
             {
                 return GetCharacterType();
+            }
+        }
+        /// <summary>
+        /// Oyunun zorluk seviyesini alak için metot.
+        /// </summary>
+        /// <returns>string zorluk seviyesi döner.</returns>
+        static string GetMonsterDifficulty()
+        {
+            Console.Write("Zorluk seviyesi seçin: 1 - Easy\t2 - Medium\t3 - Hard:\t");
+            if (int.TryParse(Console.ReadLine(), out int difficulty))
+            {
+                return difficulty == 1 ? "Easy" :
+                       difficulty == 2 ? "Medium" : "Hard";
+            }
+            else
+            {
+                return GetMonsterDifficulty();
             }
         }
     }

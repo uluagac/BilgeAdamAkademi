@@ -67,5 +67,6 @@ namespace _18_GameTry_Study_
         }
 
         // Abstract Method
+        public abstract int Attack(int damage, int hp);
     }
 }

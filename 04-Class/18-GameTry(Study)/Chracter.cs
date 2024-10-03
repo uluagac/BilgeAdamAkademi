@@ -78,5 +78,9 @@ namespace _18_GameTry_Study_
 
 
         // Abstract Override Method
+        public override int Attack(int damage, int hp)
+        {
+            return hp - damage;
+        }
     }
 }
