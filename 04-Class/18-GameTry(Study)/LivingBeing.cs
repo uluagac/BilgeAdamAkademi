@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,6 +10,7 @@ namespace _18_GameTry_Study_
     public abstract class LivingBeing
     {
         // Fileds
+        private string _name;
         private int _healthPoint;
         private int _manaPoint;
         private int _attackPoint;
@@ -21,6 +23,17 @@ namespace _18_GameTry_Study_
         }
 
         // Properties
+        public string Name
+        {
+            get
+            { 
+                return _name;
+            }
+            set
+            {
+                _name = value;
+            }
+        }
         public int HealthPoint
         {
             get
@@ -67,6 +80,6 @@ namespace _18_GameTry_Study_
         }
 
         // Abstract Method
-        public abstract int Attack(int damage, int hp);
+        public abstract void Attack(int damage, int hp);
     }
 }

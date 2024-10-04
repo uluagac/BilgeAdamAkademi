@@ -4,14 +4,12 @@ namespace _18_GameTry_Study_
 {
     internal class Program
     {
-        static Character character = new Character(GetCharacterName(), GetCharacterType());
-        static Monster monster = new Monster(GetMonsterDifficulty());
         static void Main(string[] args)
         {
             Start();
         }
         /// <summary>
-        /// Oyunun başlangıç menüsüdür. 2 saniyelik bir bildirim gösterir ve menüyü açar.
+        /// Oyunun başlangıç menüsüdür. 1.5 saniyelik bir bildirim gösterir ve menüyü açar.
         /// </summary>
         static void Start()
         {
@@ -19,7 +17,7 @@ namespace _18_GameTry_Study_
             Console.Title = "Dungeon Master";
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Oyuna hoş geldiniz. Bu oyun metin tabanlı bir FRP'dir. Deneme amacıyla yapılmıştır.");
-            Thread.Sleep(2000);
+            Thread.Sleep(1500);
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Ne yapmak istiyorsunuz?");
@@ -33,12 +31,37 @@ namespace _18_GameTry_Study_
                     // Oyun Başlatılır
                     Character character = new Character(GetCharacterName(), GetCharacterType());
                     Monster monster = new Monster(GetMonsterDifficulty());
-                    Console.WriteLine(character.HealthPoint);
-                    Console.WriteLine(monster.HealthPoint);
+                    Console.WriteLine("1 - Saldır\tDiğer - Kaç");
+                    bool attackOrRun = Console.ReadLine() == "1" ? true : false;
+                    while (attackOrRun)
+                    {
+                        Console.Clear();
 
+                        character.HealthPoint -= (monster.AttackPoint  - character.ArmorPoint);
+                        monster.HealthPoint -= character.AttackPoint;
+
+                        Console.WriteLine($"Merhaba {character.Name}.\nKarakter: {character.CharacterType}, Can: {character.HealthPoint}\nRakip: {monster.Name}, Can: {monster.HealthPoint}");
+
+                        if (monster.HealthPoint <= 0 || character.HealthPoint <= 0)
+                        {
+                            attackOrRun = false;
+
+                        }
+                        else
+                        {
+                            attackOrRun = Console.ReadLine() == "1" ? true : false;
+                        }
+                    }
                     break;
                 case "2":
                     // Konsol Kapatılır
+                    break;
+                default:
+                    Console.Clear();
+                    Console.WriteLine("Lütfen bir geçerli seçenek seçin");
+                    Thread.Sleep(2000);
+                    Console.Clear();
+                    Start();
                     break;
             }
         }
@@ -94,7 +117,7 @@ namespace _18_GameTry_Study_
         /// <returns>string zorluk seviyesi döner.</returns>
         static string GetMonsterDifficulty()
         {
-            Console.Write("Zorluk seviyesi seçin: 1 - Easy\t2 - Medium\t3 - Hard:\t");
+            Console.Write("Zorluk seviyesi seçin: \t1 - Easy\t|\t2 - Medium\t|\t3 - Hard:\t");
             if (int.TryParse(Console.ReadLine(), out int difficulty))
             {
                 return difficulty == 1 ? "Easy" :

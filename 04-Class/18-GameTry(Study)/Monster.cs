@@ -18,18 +18,21 @@ namespace _18_GameTry_Study_
             switch (difficulty)
             {
                 case "Easy":
+                    Name = "Yarasa";
                     HealthPoint = 300;
                     ManaPoint = 0;
                     AttackPoint = 25;
                     SkillDamage = 0;
                     break;
                 case "Medium":
+                    Name = "Tek Gözlü Yaratık";
                     HealthPoint = 500;
                     ManaPoint = 0;
                     AttackPoint = 45;
                     SkillDamage = 0;
                     break;
                 case "Hard":
+                    Name = "Dört Kollu Canavar";
                     HealthPoint = 800;
                     ManaPoint = 200;
                     AttackPoint = 75;
@@ -50,9 +53,9 @@ namespace _18_GameTry_Study_
         }
 
         // Abstract Override Method
-        public override int Attack(int damage, int hp)
+        public override void Attack(int damage, int hp)
         {
-            return hp - damage;
+
         }
     }
 }

@@ -9,7 +9,6 @@ namespace _18_GameTry_Study_
     public class Character : LivingBeing
     {
         // Fields
-        private string _name;
         private int _characterType;
         private string _weapon;
         private int _armorPoint;
@@ -18,7 +17,7 @@ namespace _18_GameTry_Study_
         //Constructor
         public Character(string name, int characterType)
         {
-            _name = name;
+            Name = name;
             switch (characterType)
             {
                 case 1:
@@ -28,7 +27,7 @@ namespace _18_GameTry_Study_
                     AttackPoint = 100;
                     SkillDamage = 0;
                     _weapon = "Kılıç";
-                    _armorPoint = 50;
+                    _armorPoint = 25;
                     break;
                 case 2:
                     _characterType = 2; // mage
@@ -45,13 +44,9 @@ namespace _18_GameTry_Study_
         }
 
         // Properties
-        public string Name
+        public string CharacterType
         {
-            get { return _name; }
-        }
-        public int CharacterType
-        {
-            get { return _characterType; }
+            get { return _characterType == 1 ? "Savaşçı" : "Büyücü"; }
         }
         public string Weapon
         {
@@ -78,9 +73,13 @@ namespace _18_GameTry_Study_
 
 
         // Abstract Override Method
-        public override int Attack(int damage, int hp)
+        public override void Attack(int damage, int hp)
         {
-            return hp - damage;
+            
+        }
+        public void Quit()
+        {
+            Console.WriteLine("Zindandan kaçıldı... Girişe geri dönülüyor!");
         }
     }
 }
