@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace _19_Class_Study_.Enums
 {
-    public enum StatusProfile
+    public enum StatusProduct
     {
-        Seller, Customer
+        SoldOut, InStock
     }
 }

@@ -10,26 +10,30 @@ namespace _19_Class_Study_.Data
     public class Customer : User
     {
         // Fields
-        private string _userName;
+        private string _email;
 
         // Constructor
-        public Customer(string userName) : base(userName)
+        public Customer(string email) : base(email)
         {
-            _userName = userName;
+            Email = email;
         }
 
         // Properties
-        public string UserName
+        public string Email
         {
-            get { return _userName; }
-            set { _userName = value.ToLower(); }
+            get
+            {
+                return _email.Split('@')[0];
+            }
+            set
+            {
+                _email = value.ToLower();
+            }
         }
 
         // Override Method
         public override void ShowMenu()
         {
-            Console.WriteLine($"{UserName}");
-            Console.Write("1 - Ürünleri İncele\t2 - Çıkış Yap");
 
         }
     }
