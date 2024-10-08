@@ -8,9 +8,8 @@ namespace _19_Class_Study_
         static void Main(string[] args)
         {
             Console.WriteLine("Hello, World!");
-            User seller = new Seller("ersin");
-            seller.UserName = "admin";
-            Console.WriteLine(seller.UserName);
+            User seller = new Seller("Ersin");
+            seller.ShowMenu();
         }
     }
 }

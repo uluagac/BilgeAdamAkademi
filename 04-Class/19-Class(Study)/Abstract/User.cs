@@ -8,12 +8,15 @@ namespace _19_Class_Study_.Abstract
 {
     public abstract class User
     {
-        // Fields
-
         // Constructor
+        public User(string userName)
+        {
+
+        }
 
         // Properties
         public string UserName { get; set; }
+        public string Password { get; set; }
 
         //Abstract Method
         public abstract void ShowMenu();

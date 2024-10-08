@@ -8,5 +8,9 @@ namespace _19_Class_Study_.Abstract
 {
     public interface ICustomerService
     {
+        public void ListProductsInStock();
+        public void AddToCart();
+        public void RemoveFromCart();
+        public void OrderProducts();
     }
 }

@@ -13,15 +13,24 @@ namespace _19_Class_Study_.Data
         private string _userName;
 
         // Constructor
-        public Customer(string userName)
+        public Customer(string userName) : base(userName)
         {
             _userName = userName;
+        }
+
+        // Properties
+        public string UserName
+        {
+            get { return _userName; }
+            set { _userName = value.ToLower(); }
         }
 
         // Override Method
         public override void ShowMenu()
         {
-            
+            Console.WriteLine($"{UserName}");
+            Console.Write("1 - Ürünleri İncele\t2 - Çıkış Yap");
+
         }
     }
 }
