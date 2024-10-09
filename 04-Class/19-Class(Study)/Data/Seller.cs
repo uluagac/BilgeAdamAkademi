@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using _19_Class_Study_.Abstract;
+using _19_Class_Study_.Enums;
 
 namespace _19_Class_Study_.Data
 {
@@ -100,32 +101,59 @@ namespace _19_Class_Study_.Data
         }
         public void DeleteProduct()
         {
+            _products.Remove(SelectId());
+            ListAllProducts(true);
+        }
+        public void UpdateProduct()
+        {
+            Product SelectProduct = SelectId();
+            Console.WriteLine($"1 - İsim: {SelectProduct.Name}\t2 - Fiyat: {SelectProduct.Price}\t3 - Stok: {SelectProduct.Stock}");
+            Console.Write("Hangi bilgiyi güncellemek istersiniz: ");
+            string ProductProperty = Console.ReadLine();
+            switch (ProductProperty)
+            {
+                case "1":
+                    Console.WriteLine("Lütfen yeni ürün ismini girin:");
+                    SelectProduct.Name = Console.ReadLine();
+                    ShowMenu();
+                    break;
+                case "2":
+                    Console.WriteLine("Lütfen yeni ürün fiyatını girin:");
+                    SelectProduct.Price = double.Parse(Console.ReadLine());
+                    ShowMenu();
+                    break;
+                case "3":
+                    Console.WriteLine("Lütfen yeni ürün stoğu girin:");
+                    SelectProduct.Stock += int.Parse(Console.ReadLine());
+                    ShowMenu();
+                    break;
+                default:
+                    Console.WriteLine("Olmayan bir özellik seçilmeye çalışıldı, menüye dönülüyor...");
+                    ShowMenu();
+                    break;
+            }
+        }
+        private Product SelectId()
+        {
             ListAllProducts(false);
-            Console.Write("Lütfen silmek istediğiniz ürünün id'sini seçin: ");
-            int SelectId = int.Parse(Console.ReadLine());
-            Product ProductToRemove = null;
+            Console.Write("Lütfen ürünün id'sini seçin: ");
+            int Select = int.Parse(Console.ReadLine());
+            Product SelectProduct = null;
             foreach (Product product in _products)
             {
-                if (product.Id == SelectId)
-                {
-                    ProductToRemove = product;
-                }
+                if (product.Id == Select)
+                    return SelectProduct = product;
             }
-            if (ProductToRemove == null)
+            if (SelectProduct == null)
             {
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Listede böyle bir ürün yok.");
                 Console.ResetColor();
                 Thread.Sleep(1000);
-                DeleteProduct();
+                return SelectId();
             }
-            _products.Remove(ProductToRemove);
-            ListAllProducts(true);
-        }
-        public void UpdateProduct()
-        {
-            ListAllProducts(false);
+            return SelectProduct;
         }
     }
 }

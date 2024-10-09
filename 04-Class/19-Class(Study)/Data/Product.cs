@@ -25,7 +25,7 @@ namespace _19_Class_Study_.Data
         }
 
         // Properties
-        public int Id { get; private set; }
+        public int Id { get; set; }
         public string Name
         {
             get { return _name; }
@@ -37,16 +37,20 @@ namespace _19_Class_Study_.Data
                 }
             }
         }
-        public double Price { get; private set; }
-        public int Stock { get; private set; }
+        public double Price { get; set; }
+        public int Stock { get; set; }
         public StatusProduct Status
         {
             get
             {
                 if (Stock <= 0)
-                    return StatusProduct.SoldOut;
+                    return StatusProduct.Tükendi;
+                else if (Stock <= 5)
+                {
+                    return StatusProduct.Tükeniyor;
+                }
                 else
-                    return StatusProduct.InStock;
+                    return StatusProduct.Stokta;
             }
         }
 
@@ -57,17 +61,17 @@ namespace _19_Class_Study_.Data
             if (Stock <= 0)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                return $"Id: {Id}\t Name: {Name}\t Price: {priceUSD}\t Stock: {Stock}\t Status: {Status}";
+                return $"Id: {Id}\t İsim: {Name}\t Fiyat: {priceUSD}\t Stok: {Stock}\t Durum: {Status}";
             }
             else if (Stock <= 5)
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                return $"Id: {Id}\t Name: {Name}\t Price: {priceUSD}\t Stock: {Stock}\t Status: {Status}";
+                return $"Id: {Id}\t İsim: {Name}\t Fiyat: {priceUSD}\t Stok: {Stock}\t Durum: {Status}";
             }
             else
             {
                 Console.ResetColor();
-                return $"Id: {Id}\t Name: {Name}\t Price: {priceUSD}\t Stock: {Stock}\t Status: {Status}";
+                return $"Id: {Id}\t İsim: {Name}\t Fiyat: {priceUSD}\t Stok: {Stock}\t Durum: {Status}";
             }
         }
     }

@@ -8,6 +8,6 @@ namespace _19_Class_Study_.Enums
 {
     public enum StatusProduct
     {
-        SoldOut, InStock
+        Tükendi, Tükeniyor, Stokta
     }
 }

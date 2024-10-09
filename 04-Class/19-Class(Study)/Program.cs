@@ -22,8 +22,8 @@ namespace _19_Class_Study_
                 new Product("Webcam", 1450, 6)
             };
 
-            User seller = new Seller("ersinuluagac@mail.com", products);
-            seller.ShowMenu();
+            User customer = new Customer("ersinuluagac@mail.com", products);
+            customer.ShowMenu();
         }
     }
 }
