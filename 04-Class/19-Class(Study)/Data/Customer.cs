@@ -80,6 +80,10 @@ namespace _19_Class_Study_.Data
                 {
                     Console.WriteLine($"Id: {product.Id}\t İsim: {product.Name}\t Fiyat {product.Price}\t");
                 }
+                else
+                {
+                    Console.WriteLine($"Id: {product.Id}\t İsim: {product.Name}\t\t\t {product.Status}");
+                }
             }
         }
         public void AddToCart()
@@ -90,7 +94,7 @@ namespace _19_Class_Study_.Data
             Product SelectProduct = null;
             foreach (Product product in _products)
             {
-                if (product.Id == Select)
+                if ((product.Id == Select) && !(product.Stock == 0))
                 {
                     SelectProduct = product;
                     _cart.Add(SelectProduct);
@@ -100,7 +104,7 @@ namespace _19_Class_Study_.Data
             {
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Listede böyle bir ürün yok.");
+                Console.WriteLine("Listede böyle bir ürün yok veya tükendi.");
                 Console.ResetColor();
                 Thread.Sleep(1000);
                 AddToCart();
@@ -162,7 +166,11 @@ namespace _19_Class_Study_.Data
         }
         public void OrderProducts()
         {
-            throw new NotImplementedException();
+            Console.Clear();
+            Console.WriteLine("Ürünleriniz hazırlanıp kargoya teslim edilecek.");
+            _cart.Clear();
+            Thread.Sleep(2000);
+            ShowMenu();
         }
     }
 }

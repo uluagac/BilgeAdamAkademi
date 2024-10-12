@@ -21,9 +21,25 @@ namespace _19_Class_Study_
                 new Product("Router", 1300, 25),
                 new Product("Webcam", 1450, 6)
             };
+            Console.WriteLine("1 - Satıcı\t2 - Müşteri");
+            string EntrySelection = Console.ReadLine();
+            Console.Write("Lütfen e-posta adresini girin: ");
+            string email = Console.ReadLine();
+            switch (EntrySelection)
+            {
+                case "1":
+                    User seller = new Seller(email, products);
+                    seller.ShowMenu();
+                    break;
+                case "2":
+                    User customer = new Customer(email, products);
+                    customer.ShowMenu();
+                    break;
+                default:
+                    Console.WriteLine("Hatalı bir seçim yapıldı.");
+                    break;
 
-            User customer = new Customer("ersinuluagac@mail.com", products);
-            customer.ShowMenu();
+            }
         }
     }
 }
