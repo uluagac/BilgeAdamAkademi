@@ -47,7 +47,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04-Classes", "04-Classes", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "18-GameTry(Study)", "04-Class\18-GameTry(Study)\18-GameTry(Study).csproj", "{40CC5FAF-0EAD-4508-916B-C513DCF2D12A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "19-Class(Study)", "04-Class\19-Class(Study)\19-Class(Study).csproj", "{019F0A19-507E-4509-8964-C0F3639AA187}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "19-Class(Study)", "04-Class\19-Class(Study)\19-Class(Study).csproj", "{019F0A19-507E-4509-8964-C0F3639AA187}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
