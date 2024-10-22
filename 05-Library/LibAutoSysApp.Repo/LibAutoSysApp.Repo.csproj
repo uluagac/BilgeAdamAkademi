@@ -6,12 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\LibraryApp.Repo\LibraryApp.Repo.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Concretes\" />
-  </ItemGroup>
-
 </Project>
