@@ -14,15 +14,17 @@ namespace LibAutoSysApp.Core.Abstracts
         private string _authorFirstName;
         private string _authorLastName;
         private ushort _publicationYear;
+        private string _category;
 
         // Constructor
-        protected BaseBook(string isbn, string title, string authorFirstName, string authorLastName, ushort publicationYear)
+        protected BaseBook(string isbn, string title, string authorFirstName, string authorLastName, ushort publicationYear, string category)
         {
             Isbn = isbn;
             Title = title;
             AuthorFirstName = authorFirstName;
             AuthorLastName = authorLastName;
             PublicationYear = publicationYear;
+            Category = category;
         }
 
         //Properties
@@ -63,7 +65,7 @@ namespace LibAutoSysApp.Core.Abstracts
             get { return _authorFirstName; }
             set
             {
-                _authorFirstName = string.Join(" ", value.Split(' ').Select(valueChar => char.ToUpper(valueChar[0]) + valueChar.Substring(1).ToLower())); ;
+                _authorFirstName = string.Join(" ", value.Split(' ').Select(valueChar => char.ToUpper(valueChar[0]) + valueChar.Substring(1).ToLower()));
             }
         }
 
@@ -97,10 +99,25 @@ namespace LibAutoSysApp.Core.Abstracts
                 }
             }
         }
-        
+
         /// <summary>
         /// Kitabın durumunu, varsayılan olarak Available (Mevcut), ayarlar.
         /// </summary>
         public StatusBook StatusBook { get; set; } = StatusBook.Available;
+
+        /// <summary>
+        /// Değeri atarken ilk harfi büyük olarak ayarlar.
+        /// </summary>
+        public string Category
+        {
+            get
+            {
+                return _category;
+            }
+            set
+            {
+                _category = value.Substring(0, 1).ToUpper() + value.Substring(1).ToLower();
+            }
+        }
     }
 }
