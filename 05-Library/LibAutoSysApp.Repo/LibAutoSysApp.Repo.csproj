@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\LibAutoSysApp.Core\LibAutoSysApp.Core.csproj" />
+  </ItemGroup>
+
 </Project>

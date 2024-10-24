@@ -10,8 +10,9 @@ namespace LibAutoSysApp.Core.Concretes
     public class BookScience : BaseBook
     {
         // Constructor
-        public BookScience(string isbn, string title, string authorFirstName, string authorLastName, ushort publicationYear, string category) : base(isbn, title, authorFirstName, authorLastName, publicationYear, category)
+        public BookScience(string isbn, string title, string authorFirstName, string authorLastName, ushort publicationYear) : base(isbn, title, authorFirstName, authorLastName, publicationYear)
         {
+            Category = "Science";
         }
     }
 }

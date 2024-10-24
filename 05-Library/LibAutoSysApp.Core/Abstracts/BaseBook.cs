@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LibAutoSysApp.Core.Abstracts
 {
-    public abstract class BaseBook
+    public abstract class BaseBook : IBaseLibrary
     {
         // Fields
         private string _isbn;
@@ -17,14 +17,13 @@ namespace LibAutoSysApp.Core.Abstracts
         private string _category;
 
         // Constructor
-        protected BaseBook(string isbn, string title, string authorFirstName, string authorLastName, ushort publicationYear, string category)
+        protected BaseBook(string isbn, string title, string authorFirstName, string authorLastName, ushort publicationYear)
         {
             Isbn = isbn;
             Title = title;
             AuthorFirstName = authorFirstName;
             AuthorLastName = authorLastName;
             PublicationYear = publicationYear;
-            Category = category;
         }
 
         //Properties
@@ -114,10 +113,20 @@ namespace LibAutoSysApp.Core.Abstracts
             {
                 return _category;
             }
-            set
+            protected set
             {
                 _category = value.Substring(0, 1).ToUpper() + value.Substring(1).ToLower();
             }
+        }
+
+        // Override Method
+        /// <summary>
+        /// Constructorda alınan kitap bilgilerini döndüren method.
+        /// </summary>
+        /// <returns>Kitap bilgileri</returns>
+        public override string ToString()
+        {
+            return $"ISBN: {Isbn}, Title: {Title}, Author: {AuthorFirstName} {AuthorLastName}, Publication Year: {PublicationYear}, Category: {Category}";
         }
     }
 }
